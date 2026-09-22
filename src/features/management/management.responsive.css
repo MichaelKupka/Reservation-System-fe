@@ -1,0 +1,50 @@
+@media (max-width: 1050px) {
+  .admin-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .occupancy-counts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 800px) {
+  .management .tabs {
+    gap: 21px;
+  }
+}
+@media (max-width: 620px) {
+  .admin-card-grid {
+    grid-template-columns: 1fr;
+  }
+  .occupancy-counts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .management .tabs {
+    gap: 23px;
+  }
+  .management-cinema {
+    max-width: none;
+    font-size: 11px;
+  }
+  .table-toolbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .table-scroll th {
+    padding: 13px 15px;
+    font-size: 9px;
+  }
+  .table-scroll td {
+    padding: 17px 15px;
+    font-size: 11px;
+  }
+  .table-scroll td strong {
+    font-size: 13px;
+  }
+  .checkin-panel {
+    margin-top: 20px;
+    padding: 27px 22px;
+  }
+  .checkin-panel > h2 {
+    font-size: 28px;
+  }
+}

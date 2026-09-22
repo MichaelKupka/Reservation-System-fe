@@ -1,0 +1,81 @@
+.reservation-row {
+  border: 1px solid var(--cinema-border);
+  background: var(--cinema-surface);
+  border-radius: 9px;
+  padding: 24px 28px;
+}
+
+.reservation-date {
+  border: 1px solid var(--cinema-border-control);
+  background: var(--cinema-raised);
+  border-radius: 7px;
+  flex-shrink: 0;
+  width: 63px;
+  padding: 13px;
+}
+
+.reservation-date strong {
+  letter-spacing: -0.05em;
+  font-size: 28px;
+  display: block;
+}
+
+.reservation-date span {
+  color: var(--cinema-muted);
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.reservation-info {
+  flex: 1;
+}
+
+.reservation-info h2 {
+  margin: 9px 0;
+  font-size: 22px;
+}
+
+.reservation-info p {
+  color: var(--cinema-muted);
+  margin-bottom: 7px;
+  font-size: 12px;
+}
+
+.reservation-info .small {
+  font-size: 11px;
+}
+
+.reservation-action {
+  flex-shrink: 0;
+}
+
+.reservation-action > strong {
+  letter-spacing: -0.04em;
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.notification-row {
+  background: var(--cinema-surface);
+  border: 1px solid var(--cinema-border);
+  border-radius: 8px;
+  padding: 20px 23px;
+}
+
+.notification-row > div {
+  flex: 1;
+}
+
+.notification-row strong {
+  font-size: 14px;
+}
+
+.notification-row p {
+  margin-top: 5px;
+}
+
+.small-icon {
+  width: 36px;
+  height: 36px;
+  margin: 0;
+}

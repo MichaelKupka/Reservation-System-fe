@@ -1,0 +1,256 @@
+.ticket-grid {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.ticket-card {
+  grid-template-columns: 210px minmax(0, 1fr);
+  min-width: 0;
+  min-height: 168px;
+  overflow: hidden;
+  color: #f5f3ed;
+  background: #111;
+  border: 1px solid #383838;
+  border-radius: 2px;
+}
+
+.ticket-stub {
+  position: relative;
+  min-width: 0;
+  gap: 10px;
+  padding: 13px 14px 10px;
+  color: #161616;
+  background: #fff;
+  border-right: 1px dashed #9d9a94;
+}
+
+.ticket-stub-facts {
+  align-items: start;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.ticket-stub-facts p {
+  line-height: 1.55;
+}
+
+.ticket-stub-facts p > span {
+  font-size: 9px;
+  letter-spacing: 0.04em;
+}
+
+.ticket-stub-facts strong {
+  margin-left: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.ticket-stub-session time,
+.ticket-stub-session strong {
+  display: block;
+  margin: 0;
+  line-height: 1.55;
+}
+
+.ticket-stub-session time {
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.ticket-code-trigger {
+  width: 100%;
+  min-width: 0;
+  min-height: 64px;
+  padding: 0;
+  color: #161616;
+  background: #fff;
+  border: 0;
+  border-radius: 0;
+}
+
+.ticket-barcode-preview {
+  display: block;
+  width: 100%;
+}
+
+.ticket-barcode-preview .ticket-barcode {
+  display: block;
+  width: 100%;
+  height: 43px;
+}
+
+.ticket-open-label {
+  min-height: 22px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.ticket-code-trigger:hover .ticket-open-label {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ticket-code-trigger:focus-visible {
+  outline-color: #a51622;
+  outline-offset: 2px;
+}
+
+.ticket-stub-footer {
+  font-size: 9px;
+  line-height: 1.4;
+  letter-spacing: 0.035em;
+}
+
+.ticket-reference {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: 0;
+}
+
+.ticket-card-main {
+  isolation: isolate;
+  grid-template-rows: auto 1fr auto;
+  align-content: start;
+  gap: 10px;
+  min-width: 0;
+  padding: 14px 20px;
+  background: #171717;
+}
+
+.ticket-artwork {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+.ticket-card-main::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, #090909e8, #09090985 68%, #09090955),
+    linear-gradient(0deg, #090909a6, transparent 75%);
+  pointer-events: none;
+}
+
+.ticket-top {
+  min-height: 18px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.ticket-top > span:first-child {
+  max-width: 78%;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.ticket-top .badge {
+  padding: 4px 6px;
+  border: 1px solid #ffffff40;
+  border-radius: 2px;
+  font-size: 10px;
+  letter-spacing: 0;
+}
+
+.ticket-film {
+  align-self: center;
+  min-width: 0;
+}
+
+.ticket-card h3 {
+  margin: 0;
+  font-family: var(--font-display, "Arial Narrow", sans-serif);
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.ticket-details {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr) minmax(0, 1fr);
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+.ticket-details.has-row {
+  grid-template-columns:
+    minmax(0, 0.7fr) minmax(0, 0.9fr) minmax(0, 1.8fr)
+    minmax(0, 1fr);
+}
+
+.ticket-details dt {
+  margin-bottom: 3px;
+  color: #d1cec8;
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+}
+
+.ticket-details dd {
+  margin: 0;
+  font-family: var(--font-display, "Arial Narrow", sans-serif);
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: 0.015em;
+  overflow-wrap: anywhere;
+}
+
+.admission-code {
+  padding: 10px;
+}
+
+.admission-barcode {
+  width: 100%;
+  overflow-x: auto;
+  padding: 12px;
+  background: #fff;
+}
+
+.admission-barcode .ticket-barcode {
+  display: block;
+  min-width: 100%;
+  height: 88px;
+}
+
+.admission-barcode:focus-visible {
+  outline: 3px solid var(--cinema-focus);
+  outline-offset: 3px;
+}
+
+.admission-code code {
+  display: block;
+  width: 100%;
+  padding: 18px;
+  color: #161616;
+  background: #fff;
+  border: 1px solid #77746e;
+  border-radius: 2px;
+  font-size: 17px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+
+.admission-code p {
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.barcode-fallback {
+  font-size: 12px;
+}

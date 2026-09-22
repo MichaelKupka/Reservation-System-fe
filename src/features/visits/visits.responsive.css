@@ -1,0 +1,65 @@
+@media (max-width: 800px) {
+  .reservation-row {
+    gap: 20px;
+    padding: 20px;
+  }
+  .reservation-info h2 {
+    font-size: 20px;
+  }
+  .reservation-info p {
+    font-size: 11px;
+  }
+}
+@media (max-width: 620px) {
+  .reservation-row {
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px;
+  }
+  .reservation-date {
+    align-self: flex-start;
+    width: 48px;
+    margin-top: 10px;
+    padding: 9px 8px;
+  }
+  .reservation-date strong {
+    font-size: 25px;
+  }
+  .reservation-date span {
+    font-size: 8px;
+  }
+  .reservation-info h2 {
+    font-size: 22px;
+  }
+  .reservation-info .small {
+    font-size: 10px;
+  }
+  .reservation-action {
+    border-top: 1px solid var(--cinema-border);
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-top: 15px;
+  }
+  .reservation-action > strong {
+    font-size: 22px;
+  }
+  .reservation-info > p {
+    font-size: 10px;
+  }
+  .notification-row {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 18px;
+  }
+  .notification-row strong {
+    font-size: 13px;
+  }
+  .notification-row .small {
+    font-size: 10px;
+  }
+  .notification-row .badge {
+    font-size: 8px;
+  }
+}

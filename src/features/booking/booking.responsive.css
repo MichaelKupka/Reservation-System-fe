@@ -1,0 +1,273 @@
+@media (max-width: 1100px) {
+  .cinema-flow {
+    --context-width: 230px;
+    --flow-gap: 30px;
+  }
+  .auditorium-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+  .screening-details {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: start;
+    gap: 28px;
+    padding: 0 0 22px;
+    border-bottom: 1px solid #292929;
+    grid-row: 1;
+  }
+  .screening-date {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    border: 0;
+    width: auto;
+    padding: 0;
+  }
+  .screening-date strong {
+    font-family: inherit;
+    font-size: 20px;
+  }
+  .screening-date span {
+    font-size: 15px;
+    text-transform: none;
+  }
+  .screening-detail-label {
+    margin-bottom: 3px;
+  }
+  .booking-top h1 {
+    font-size: 56px;
+  }
+}
+@media (max-width: 800px) {
+  .cinema-flow {
+    --context-width: 180px;
+    --flow-gap: 24px;
+  }
+  .booking-top h1 {
+    font-size: 46px;
+  }
+  .booking-top {
+    min-height: 208px;
+  }
+  .film-backdrop {
+    height: 345px;
+  }
+  .booking-layout > .film-context,
+  .checkout-sidebar {
+    margin-top: -205px;
+  }
+  .booking-steps li {
+    padding-inline: 5px;
+    gap: 7px;
+    font-size: 11px;
+  }
+  .chosen-seats .seat-chip {
+    flex-wrap: wrap;
+    padding: 9px;
+    gap: 7px;
+  }
+  .chosen-seat-label {
+    flex: 1;
+  }
+  .chosen-seat-price {
+    margin-left: 0;
+  }
+  .payment-panel {
+    padding: 22px;
+  }
+}
+@media (max-width: 620px) {
+  .cinema-flow {
+    padding-top: 92px;
+    padding-bottom: 95px;
+  }
+  .film-backdrop {
+    height: 285px;
+  }
+  .film-backdrop img {
+    object-position: 72% center;
+  }
+  .film-backdrop:after {
+    background:
+      linear-gradient(0deg, #0b0b0c, #0004 60%),
+      linear-gradient(90deg, #0008, #0002);
+  }
+  .cinema-flow .back-link {
+    font-size: 12px;
+  }
+  .booking-top {
+    min-height: 130px;
+    padding: 24px 0;
+    margin: 0 0 14px;
+  }
+  .booking-top h1 {
+    font-size: 42px;
+    max-width: 85%;
+  }
+  .booking-top .eyebrow {
+    font-size: 9px;
+    margin-bottom: 8px;
+  }
+  .booking-top > p:last-child:not(.eyebrow) {
+    display: none;
+  }
+  .booking-layout {
+    grid-template: "context" "task" "summary" / minmax(0, 1fr);
+    gap: 24px;
+  }
+  .booking-layout > .film-context,
+  .checkout-sidebar {
+    margin-top: 0;
+  }
+  .film-context {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+  }
+  .context-poster {
+    width: 80px;
+    flex-shrink: 0;
+    aspect-ratio: 2/3;
+  }
+  .context-poster .poster-type {
+    display: none;
+  }
+  .context-copy {
+    display: block;
+    min-width: 0;
+  }
+  .context-copy h2 {
+    display: none;
+  }
+  .context-copy > p {
+    color: white;
+    font-weight: 600;
+  }
+  .context-facts {
+    font-size: 12px;
+  }
+  .context-facts svg {
+    width: 14px;
+    flex-shrink: 0;
+  }
+  .booking-steps {
+    margin-bottom: 24px;
+  }
+  .booking-steps li {
+    font-size: 11px;
+    min-height: 50px;
+    gap: 8px;
+    padding: 7px 3px;
+  }
+  .booking-steps b {
+    width: 19px;
+    height: 19px;
+    font-size: 11px;
+  }
+  .screening-details {
+    display: none;
+  }
+  .auditorium-layout {
+    display: block;
+  }
+  .booking-summary {
+    padding-top: 0;
+  }
+  .chosen-seats > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .chosen-seats .seat-chip {
+    padding: 9px 10px;
+  }
+  .chosen-seat-label {
+    font-size: 9px;
+    gap: 4px;
+  }
+  .chosen-seat-label strong {
+    font-size: 20px;
+  }
+  .chosen-seat-price {
+    font-size: 11px;
+  }
+  .booking-action {
+    position: fixed;
+    z-index: 20;
+    bottom: 0;
+    inset-inline: 0;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    background: #151515;
+    border-top: 1px solid #4b4b4b;
+    box-shadow: 0 -8px 30px #0005;
+  }
+  .booking-action .price-total {
+    padding: 0;
+    border: 0;
+    margin: 0;
+    display: block;
+    min-width: 84px;
+  }
+  .booking-action .price-total > span {
+    font-size: 11px;
+  }
+  .booking-action .price-total small {
+    display: none;
+  }
+  .booking-action .price-total strong {
+    display: block;
+    font-size: 25px;
+  }
+  .booking-action > .btn {
+    margin: 0;
+    flex: 1;
+    width: auto;
+  }
+  .summary-note {
+    font-size: 12px;
+  }
+  .checkout-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .checkout-sidebar .sidebar-order {
+    display: none;
+  }
+  .checkout-heading h2 {
+    font-size: 31px;
+  }
+  .checkout-heading > .muted {
+    font-size: 13px;
+  }
+  .payment-panel {
+    padding: 20px 16px;
+  }
+  .payment-panel > h2 {
+    font-size: 22px;
+  }
+  .hold-timer {
+    font-size: 12px;
+    padding: 12px;
+  }
+  .hold-timer strong {
+    font-size: 20px;
+  }
+  .checkout-return .small {
+    font-size: 13px;
+  }
+}
+@media (max-width: 360px) {
+  .chosen-seats > div {
+    grid-template-columns: 1fr;
+  }
+  .booking-steps li {
+    font-size: 10px;
+    gap: 5px;
+  }
+  .booking-top h1 {
+    font-size: 38px;
+  }
+}

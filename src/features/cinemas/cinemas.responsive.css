@@ -1,0 +1,28 @@
+@media (max-width: 800px) {
+  .cinema-illustration {
+    height: 220px;
+  }
+  .cinema-chair-row {
+    gap: 9px;
+  }
+  .cinema-chair-row i {
+    width: 32px;
+  }
+}
+@media (max-width: 620px) {
+  .cinema-grid {
+    grid-template-columns: 1fr;
+  }
+  .cinema-illustration {
+    height: 235px;
+  }
+  .cinema-chair-row i {
+    width: 36px;
+  }
+  .cinema-card-body {
+    padding: 25px;
+  }
+  .cinema-card-body h2 {
+    font-size: 28px;
+  }
+}
