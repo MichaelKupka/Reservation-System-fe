@@ -105,11 +105,20 @@ nákup, vlastné vstupenky, správa kín/programu/používateľov a jednorazová
 Manažér vidí pridelené kiná; administrátor celú správu. Backend overuje oprávnenia
 pri každej operácii. Čas sa zobrazuje v časovom pásme zariadenia a sumy z celých centov.
 
+Rezervovať a zaplatiť sa dá aj bez účtu. Neprihlásený návštevník zadá meno a
+e-mail, backend cez `POST /guest/reservations` vytvorí hold a vráti opaque guest
+token, ktorým sa autorizuje čítanie, platba aj zrušenie tej istej rezervácie
+(prihlásenie zostáva voliteľné). Token uchovávame v `sessionStorage` aktuálnej
+karty pod ID rezervácie a rešpektujeme jeho platnosť.
+
 Platba a doručenie sú lokálne simulácie. UI to výslovne uvádza, nežiada kartu a
 nestrháva peniaze. Simulačná platba sa zobrazí iba pri príslušnej operácii v OpenAPI.
 Reálny poskytovateľ, e-mailové doručenie a refundácie vyžadujú ďalšiu integráciu.
 Bearer session zostáva v pamäti a `sessionStorage` aktuálnej karty; odhlásenie ju
 ruší a zmena hesla vyžaduje nové prihlásenie. Kódy vstupeniek sa zobrazujú súkromne.
+Guest bez účtu sa k rezervácii vráti len v okne prehliadača, kde nakúpil (token je
+v `sessionStorage`); po zatvorení okna alebo vypršaní tokenu prístup zaniká.
+E-mailové doručenie odkazu zatiaľ nie je integrované.
 
 ## Overenie
 

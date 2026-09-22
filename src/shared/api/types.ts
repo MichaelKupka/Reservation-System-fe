@@ -132,6 +132,12 @@ export interface Reservation {
     released_at: string | null;
   }[];
 }
+export interface GuestReservation {
+  reservation: Reservation;
+  guest_token: string;
+  token_type: string;
+  guest_token_expires_at: string;
+}
 export interface Ticket {
   id: string;
   reservation_id: string;
