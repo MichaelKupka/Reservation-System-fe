@@ -1,0 +1,76 @@
+@media (max-width: 1000px) {
+  .map-tools {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+@media (max-width: 800px) {
+  .seat-panel-heading {
+    padding: 0 0 16px;
+  }
+  .map-tools {
+    flex-direction: row;
+    align-items: center;
+    padding: 0 0 16px;
+  }
+}
+@media (max-width: 620px) {
+  .seat-panel-heading h2 {
+    font-size: 19px;
+  }
+  .seat-panel-heading .small {
+    font-size: 13px;
+  }
+  .seat-scroll {
+    padding: 30px 10px 32px;
+  }
+  .seat-map {
+    padding: 0 10px;
+  }
+  .seat-row {
+    gap: 9px;
+  }
+  .seat-row-buttons {
+    gap: 8px;
+  }
+  .seat {
+    width: 44px;
+    height: 44px;
+    font-size: 14px;
+  }
+  .seat-rows {
+    gap: 13px;
+    min-height: 175px;
+    padding-top: 32px;
+  }
+  .screen-arc {
+    min-width: 180px;
+    max-width: 270px;
+  }
+  .seat-legend {
+    gap: 12px;
+    font-size: 12px;
+  }
+  .seat-help {
+    gap: 6px;
+    font-size: 12px;
+  }
+  .map-tools {
+    flex-wrap: wrap;
+    padding: 0 0 16px;
+  }
+  .map-tools p {
+    flex-basis: 100%;
+    font-size: 12px;
+  }
+  .map-tools .btn {
+    font-size: 12px;
+  }
+  .seat-list {
+    padding: 16px;
+  }
+  .seat-list fieldset > div {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

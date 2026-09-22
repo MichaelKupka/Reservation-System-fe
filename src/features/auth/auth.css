@@ -1,0 +1,84 @@
+.auth-layout {
+  grid-template-columns: 1fr 1fr;
+  padding-top: 36px;
+  padding-bottom: 15px;
+}
+
+.auth-art {
+  background: var(--cinema-surface);
+  border-radius: 12px;
+  height: 630px;
+  overflow: hidden;
+}
+
+.auth-art:after {
+  content: "";
+  background: linear-gradient(0deg, #0a0b0e, #0000);
+  position: absolute;
+  inset: 0;
+}
+
+.auth-quote {
+  z-index: 1;
+  color: #fff;
+  position: absolute;
+  bottom: 40px;
+  left: 35px;
+  right: 25px;
+}
+
+.auth-quote h2 {
+  margin: 15px 0 28px;
+  font-size: 49px;
+  font-weight: 750;
+  line-height: 1.03;
+}
+
+.auth-quote em {
+  color: #fff;
+}
+
+.art-index {
+  letter-spacing: 0.15em;
+}
+
+.auth-form-wrap {
+  align-self: center;
+  max-width: 450px;
+  padding: 20px 28px 20px 0;
+}
+
+.auth-form-wrap > .text-link {
+  color: var(--cinema-muted);
+  margin-bottom: 32px;
+  font-size: 11px;
+}
+
+.auth-form-wrap > .eyebrow {
+  color: var(--cinema-muted);
+  margin-bottom: 13px;
+}
+
+.auth-form-wrap h1 {
+  margin-bottom: 15px;
+  font-size: 36px;
+}
+
+.auth-form-wrap > p.muted {
+  margin-bottom: 30px;
+  font-size: 13px;
+}
+
+.auth-form-wrap .form-stack {
+  gap: 19px;
+}
+
+.auth-switch {
+  margin-top: 27px;
+}
+
+.auth-switch button {
+  color: var(--cinema-text);
+  margin-left: 4px;
+  font-size: 12px;
+}

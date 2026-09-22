@@ -1,0 +1,92 @@
+@media (max-width: 1000px) {
+  .ticket-card {
+    grid-template-columns: 176px minmax(0, 1fr);
+  }
+  .ticket-stub {
+    padding-inline: 10px;
+  }
+  .ticket-stub-facts {
+    gap: 6px;
+  }
+  .ticket-card-main {
+    padding: 14px;
+  }
+  .ticket-details {
+    gap: 8px;
+  }
+  .ticket-details dd {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 620px) {
+  .ticket-grid {
+    gap: 16px;
+  }
+  .ticket-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ticket-card-main {
+    grid-row: 1;
+    min-height: 174px;
+    padding: 16px 18px;
+  }
+  .ticket-card h3 {
+    font-size: 34px;
+  }
+  .ticket-stub {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 8px 16px;
+    padding: 12px 16px 10px;
+    border-top: 1px dashed #9d9a94;
+    border-right: 0;
+  }
+  .ticket-stub-facts {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+  .ticket-stub-facts > div:first-child {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .ticket-stub-session {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 7px;
+  }
+  .ticket-stub-session strong {
+    font-size: 11px;
+  }
+  .ticket-stub-footer {
+    grid-column: 1 / -1;
+    padding-top: 3px;
+  }
+  .ticket-details dd {
+    font-size: 22px;
+  }
+  .admission-code code {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  .ticket-card-main {
+    padding: 14px;
+  }
+  .ticket-stub {
+    padding-inline: 12px;
+    gap: 8px 10px;
+  }
+  .ticket-card h3 {
+    font-size: 30px;
+  }
+  .ticket-details {
+    gap: 7px;
+  }
+  .ticket-details dd {
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,178 @@
+.management .tabs {
+  gap: 25px;
+}
+
+.management-cinema {
+  max-width: 340px;
+  margin: 0 0 24px;
+}
+
+.management-cinema select {
+  font-size: 12px;
+}
+
+.table-scroll {
+  border: 1px solid var(--cinema-border);
+  background: var(--cinema-surface);
+  border-radius: 9px;
+  overflow-x: auto;
+}
+
+.table-toolbar {
+  margin: 0 0 20px;
+}
+
+.table-scroll table {
+  border-collapse: collapse;
+  text-align: left;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.table-scroll th {
+  letter-spacing: 0.03em;
+  color: var(--cinema-muted);
+  background: var(--cinema-raised);
+  border-bottom: 1px solid var(--cinema-border);
+  padding: 15px 19px;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.table-scroll td {
+  border-bottom: 1px solid var(--cinema-raised);
+  color: var(--cinema-muted);
+  padding: 20px 19px;
+  font-size: 12px;
+}
+
+.table-scroll tr:last-child td {
+  border-bottom: 0;
+}
+
+.table-scroll td strong {
+  color: var(--cinema-muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.table-scroll td small {
+  color: var(--cinema-muted);
+  margin-top: 7px;
+  font-size: 10px;
+  display: block;
+}
+
+.truncate {
+  text-overflow: ellipsis;
+  max-width: 420px;
+  overflow: hidden;
+}
+
+.admin-card-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.admin-card-grid .surface > svg {
+  color: var(--cinema-muted);
+  margin-bottom: 20px;
+}
+
+.admin-card-grid .surface h2 {
+  font-size: 22px;
+}
+
+.admin-card-grid p {
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.user-search {
+  max-width: 380px;
+  margin-bottom: 24px;
+}
+
+.occupancy h3 {
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cinema-muted);
+}
+
+.occupancy-counts {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.occupancy-counts .surface {
+  padding: 14px 16px;
+}
+
+.occupancy-counts dd {
+  font-size: 24px;
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  margin-top: 4px;
+}
+
+.occupancy-seats {
+  flex-wrap: wrap;
+}
+
+.occupancy-seats .btn {
+  min-width: 68px;
+  font-variant-numeric: tabular-nums;
+}
+
+.table-empty {
+  padding: 35px;
+}
+
+.cinema-assignments > strong {
+  margin: 10px 0 3px;
+  font-size: 12px;
+}
+
+.checkin-panel {
+  max-width: 570px;
+  margin: 30px auto;
+  padding: 40px;
+}
+
+.checkin-panel > h2 {
+  margin: 20px 0 13px;
+  font-size: 30px;
+}
+
+.checkin-panel > p {
+  margin-bottom: 25px;
+  font-size: 13px;
+}
+
+.checkin-icon {
+  background: var(--cinema-raised);
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  place-items: center;
+  margin: auto;
+}
+
+.checkin-panel .form-stack {
+  text-align: left;
+}
+
+.checkin-success {
+  background: #162e25;
+  border-radius: 8px;
+  margin-top: 24px;
+  padding: 25px;
+}
+
+.checkin-success h3 {
+  margin: 12px 0;
+}
+
+.checkin-success p {
+  margin-bottom: 15px;
+  font-size: 12px;
+}

@@ -1,0 +1,30 @@
+.account-layout {
+  grid-template-columns: 1fr 1.2fr;
+  max-width: 980px;
+}
+
+.profile-card {
+  align-self: start;
+  padding: 40px 35px;
+}
+
+.large-avatar {
+  background: var(--cinema-raised);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  place-items: center;
+  margin: 0 auto 23px;
+}
+
+.profile-role {
+  border: 1px solid var(--cinema-border-control);
+  border-radius: 30px;
+  margin: 14px 0 23px;
+  padding: 9px 14px;
+}
+
+.account-layout > .surface > .muted {
+  margin: 14px 0 25px;
+  font-size: 12px;
+}

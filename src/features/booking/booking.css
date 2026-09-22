@@ -1,0 +1,375 @@
+.cinema-flow {
+  --context-width: 280px;
+  --flow-gap: 48px;
+  isolation: isolate;
+  padding-top: 110px;
+  padding-bottom: 44px;
+}
+.film-backdrop {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  inset: 0 0 auto;
+  height: 365px;
+  overflow: hidden;
+  background: #242220;
+}
+.film-backdrop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 38%;
+}
+.film-backdrop:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, #08080970, #0b0b0c33),
+    linear-gradient(0deg, #0b0b0c22, #0005);
+}
+.cinema-flow .back-link {
+  margin: 0;
+  min-height: 28px;
+  font-size: 12px;
+  color: #ddd;
+}
+.booking-top {
+  min-height: 228px;
+  padding: 30px 0 35px calc(var(--context-width) + var(--flow-gap));
+  margin: 0 0 24px;
+}
+.booking-top h1 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: clamp(44px, 5.5vw, 72px);
+  letter-spacing: 0.025em;
+  font-weight: 400;
+  line-height: 1.05;
+  text-shadow: 0 2px 24px #0008;
+}
+.booking-top .eyebrow {
+  font-size: 10px;
+  color: #ddd;
+  margin-bottom: 10px;
+}
+.booking-top > p:last-child:not(.eyebrow) {
+  color: #d0d0d0;
+  font-size: 13px;
+  margin-top: 12px;
+}
+.booking-layout {
+  grid-template:
+    "context task" "summary task" 1fr / var(--context-width)
+    minmax(0, 1fr);
+  column-gap: var(--flow-gap);
+}
+.film-context {
+  grid-area: context;
+  min-width: 0;
+}
+.booking-layout > .film-context,
+.checkout-sidebar {
+  margin-top: -225px;
+}
+.context-poster {
+  width: 100%;
+  aspect-ratio: 2/3;
+  overflow: hidden;
+  box-shadow: 0 8px 20px #0007;
+  border: 1px solid #ffffff1a;
+  border-radius: 2px;
+}
+.context-copy {
+  display: none;
+}
+.context-copy h2 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-weight: 400;
+  font-size: 29px;
+  margin-bottom: 8px;
+}
+.context-copy > p {
+  font-size: 13px;
+  color: var(--cinema-muted);
+}
+.context-facts {
+  margin-top: 10px;
+}
+.context-facts span {
+  display: flex;
+  align-items: start;
+  gap: 8px;
+  overflow-wrap: anywhere;
+}
+.booking-task {
+  grid-area: task;
+}
+.booking-steps {
+  padding: 0;
+  margin: 0 0 30px;
+  list-style: none;
+  border-bottom: 1px solid #3e3e3e;
+}
+.booking-steps li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 54px;
+  color: #aaa;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  padding: 8px 12px;
+}
+.booking-steps b {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  background: #292929;
+  border: 1px solid #555;
+  border-radius: 2px;
+}
+.booking-steps .current {
+  color: #fff;
+}
+.booking-steps .current:after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -1px;
+  height: 2px;
+  background: var(--cinema-primary);
+}
+.booking-steps .complete b,
+.booking-steps .current b {
+  background: var(--cinema-primary);
+  border-color: var(--cinema-primary);
+  color: white;
+}
+.auditorium-layout {
+  grid-template-columns: minmax(0, 1fr) 115px;
+  gap: 26px;
+}
+.screening-details {
+  padding-top: 28px;
+  font-size: 13px;
+}
+.screening-detail-label {
+  display: block;
+  color: #9d9d9d;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+.screening-details strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+}
+.screening-details p {
+  color: #bdbdbd;
+  margin-top: 5px;
+  overflow-wrap: anywhere;
+}
+.screening-date {
+  border: 1px solid #3e3e3e;
+  width: 80px;
+  padding: 8px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.screening-date strong {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 1;
+}
+.screening-date span {
+  font-size: 13px;
+}
+.screening-details .screening-time {
+  font-size: 20px;
+}
+.booking-summary {
+  grid-area: summary;
+  padding-top: 28px;
+  align-self: start;
+}
+.chosen-seats {
+  border: 0;
+  padding: 0;
+}
+.chosen-seats > div {
+  display: grid;
+  gap: 10px;
+  font-size: 13px;
+}
+.chosen-seats .seat-chip {
+  background: transparent;
+  border: 1px solid #454545;
+  border-radius: 2px;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 13px;
+  text-align: left;
+  width: 100%;
+}
+.chosen-seat-label {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  white-space: nowrap;
+  font-size: 10px;
+}
+.chosen-seat-label strong {
+  font-family: var(--font-display);
+  font-size: 23px;
+  font-weight: 400;
+  margin-left: 5px;
+}
+.chosen-seat-label strong:first-child {
+  margin-left: 0;
+}
+.chosen-seat-price {
+  color: #bdbdbd;
+  font-size: 12px;
+  margin-left: auto;
+}
+.price-total {
+  border-top: 1px solid #333;
+  margin-top: 18px;
+  padding: 20px 0;
+}
+.price-total strong {
+  font-weight: 500;
+  font-size: 29px;
+  letter-spacing: -0.04em;
+}
+.price-total small {
+  display: block;
+  color: #aaa;
+  font-size: 12px;
+  margin-top: 4px;
+  font-weight: 400;
+}
+.booking-action > .btn {
+  margin-top: 10px;
+}
+.summary-note {
+  margin-top: 14px;
+  line-height: 1.6;
+}
+.checkout-grid {
+  grid-template-columns: var(--context-width) minmax(0, 1fr);
+  gap: var(--flow-gap);
+}
+.checkout-sidebar .film-context {
+  grid-area: auto;
+}
+.sidebar-order {
+  margin-top: 28px;
+}
+.checkout-heading {
+  margin: 0 0 26px;
+}
+.checkout-heading h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  font-size: 34px;
+}
+.checkout-heading > .muted {
+  font-size: 14px;
+  max-width: 650px;
+}
+.checkout-heading .eyebrow,
+.checkout-symbol {
+  display: none;
+}
+.checkout-layout,
+.confirmation-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.checkout-context {
+  order: 2;
+  width: 100%;
+}
+.checkout-context .checkout-details {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}
+.checkout-details.has-context .section-heading,
+.checkout-details.has-context > p {
+  display: none;
+}
+.checkout-details > .text-button {
+  text-align: left;
+  min-height: 44px;
+}
+.confirmation-content {
+  width: 100%;
+}
+.confirmation-layout .ticket-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+.payment-panel {
+  width: 100%;
+  background: #141414;
+  border: 1px solid #383838;
+  border-radius: 3px;
+  padding: 28px;
+}
+.hold-timer {
+  padding: 12px 14px;
+  background: #302717;
+  color: var(--cinema-warning);
+  border-radius: 2px;
+  margin-bottom: 22px;
+}
+.hold-timer strong {
+  margin-left: auto;
+  font-size: 20px;
+  font-variant-numeric: tabular-nums;
+}
+.payment-panel > h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 23px;
+}
+.payment-panel > .btn {
+  margin: 10px 0 14px;
+}
+.order-lines {
+  padding: 10px 0;
+}
+.order-lines > div {
+  display: flex;
+  justify-content: space-between;
+  color: #bdbdbd;
+  font-size: 14px;
+}
+.order-lines strong {
+  color: white;
+  margin-left: 5px;
+}
+.checkout-order .price-total {
+  margin-top: 12px;
+}
+.checkout-return {
+  margin-top: 28px;
+}

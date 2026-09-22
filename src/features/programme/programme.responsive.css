@@ -1,0 +1,268 @@
+@media (min-width: 1700px) {
+  .programme-hero {
+    min-height: 790px;
+  }
+}
+@media (max-width: 1050px) {
+  .programme-hero {
+    min-height: 680px;
+  }
+  .programme-hero-copy {
+    max-width: 540px;
+  }
+  .programme-hero h1 {
+    font-size: 82px;
+  }
+  .programme-hero-shade {
+    background:
+      linear-gradient(0deg, var(--cinema-bg), transparent 34%),
+      linear-gradient(
+        90deg,
+        rgb(6 6 7 / 94%),
+        rgb(6 6 7 / 57%) 50%,
+        rgb(6 6 7 / 20%)
+      );
+  }
+  .programme-toolbar {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .programme .date-tabs {
+    flex-basis: 100%;
+  }
+  .programme .date-tabs button {
+    flex: 1;
+  }
+  .programme .calendar-picker {
+    margin-left: auto;
+  }
+  .programme-film {
+    width: calc((100% - 60px) / 4);
+  }
+  .programme-single-film .programme-film {
+    grid-template-columns: 160px minmax(0, 1fr);
+    gap: 28px;
+  }
+  .programme-single-film .programme-film-copy {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+  .programme-single-film .programme-film h3 {
+    font-size: 36px;
+    margin: 8px 0 12px;
+  }
+  .programme-film-session {
+    padding: 0;
+    border: 0;
+  }
+  .programme-film-link {
+    margin-top: 12px;
+  }
+}
+@media (max-width: 700px) {
+  .programme-hero {
+    min-height: 690px;
+    align-items: flex-end;
+  }
+  .programme-backdrop {
+    object-position: 77% center;
+  }
+  .programme-hero-shade {
+    background:
+      linear-gradient(
+        0deg,
+        var(--cinema-bg) 2%,
+        rgb(6 6 7 / 80%) 32%,
+        rgb(6 6 7 / 12%) 100%
+      ),
+      linear-gradient(90deg, rgb(6 6 7 / 55%), transparent);
+  }
+  .programme-hero-content {
+    padding-top: 190px;
+    padding-bottom: 80px;
+  }
+  .programme-hero h1 {
+    max-width: 480px;
+    font-size: clamp(56px, 12vw, 78px);
+    margin-bottom: 20px;
+  }
+  .programme-hero .programme-kicker {
+    margin-bottom: 18px;
+    font-size: 10px;
+  }
+  .programme-hero-facts {
+    margin-bottom: 18px;
+  }
+  .programme .programme-hero-description {
+    max-width: 450px;
+    font-size: 14px;
+    line-height: 1.65;
+    margin-bottom: 18px;
+  }
+  .programme .programme-hero-screening {
+    font-size: 12px;
+    margin-bottom: 24px;
+  }
+  .programme-hero-scroll {
+    bottom: 25px;
+    left: 20px;
+  }
+  .programme-collection {
+    padding-top: 22px;
+    padding-bottom: 40px;
+  }
+  .programme-section-heading {
+    margin-bottom: 22px;
+  }
+  .programme-section-heading h2 {
+    font-size: 30px;
+  }
+  .programme .programme-kicker {
+    font-size: 9px;
+    margin-bottom: 8px;
+  }
+  .programme-section-link {
+    font-size: 12px;
+  }
+  .programme-film-rail {
+    gap: 14px;
+  }
+  .programme-film {
+    width: 166px;
+    min-width: 166px;
+  }
+  .programme-film h3 {
+    font-size: 14px;
+  }
+  .programme-single-film .programme-film {
+    grid-template-columns: 105px minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+  }
+  .programme-single-film .programme-film h3 {
+    font-size: 29px;
+  }
+  .programme-single-film .programme-film-copy {
+    gap: 20px;
+  }
+  .programme-single-film .poster-type > strong,
+  .programme .movie-art .poster-type > strong {
+    font-size: 23px;
+  }
+  .programme-single-film .programme-film .programme-kicker {
+    font-size: 8px;
+  }
+  .programme .programme-film .programme-film-description {
+    display: none;
+  }
+  .programme .programme-film .programme-film-date {
+    margin-top: 8px;
+    font-size: 14px;
+  }
+  .programme .programme-film .programme-film-time {
+    font-size: 14px;
+  }
+  .programme .programme-film .programme-film-time span::before {
+    content: none;
+  }
+  .programme .programme-film .programme-film-time span {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+  }
+  .programme .programme-film-link {
+    margin-top: 8px;
+    font-size: 12px;
+  }
+  .programme-section {
+    padding-top: 30px;
+  }
+  .programme .cinema-filter {
+    width: 100%;
+  }
+  .programme .date-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    scrollbar-width: thin;
+  }
+  .programme .date-tabs button {
+    min-width: 68px;
+    min-height: 66px;
+    padding: 9px 10px;
+  }
+  .programme-search {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .programme .search-field {
+    width: 100%;
+    order: -1;
+  }
+  .programme .movie-card {
+    grid-template-columns: 105px minmax(0, 1fr);
+    gap: 18px;
+    padding-bottom: 25px;
+  }
+  .programme .movie-info {
+    padding: 0;
+  }
+  .programme .movie-info h3 {
+    font-size: 29px;
+    margin-top: 10px;
+  }
+  .programme .movie-price {
+    margin: 0;
+    font-size: 14px;
+  }
+  .programme .movie-title-row {
+    gap: 10px;
+  }
+  .programme .movie-meta {
+    font-size: 9px;
+    gap: 8px;
+  }
+  .programme .programme-age {
+    font-size: 10px;
+  }
+  .programme .movie-facts {
+    margin-top: 8px;
+    font-size: 12px;
+  }
+  .programme .movie-description {
+    font-size: 13px;
+    margin: 12px 0 16px;
+  }
+  .programme .showtimes-label {
+    margin-top: 18px;
+    font-size: 9px;
+  }
+  .programme .showtime {
+    width: 100%;
+    min-width: 0;
+    padding: 11px 12px;
+  }
+  .programme-cinemas {
+    padding: 24px 0;
+    font-size: 13px;
+  }
+}
+@media (max-width: 380px) {
+  .programme-hero-actions {
+    gap: 8px 16px;
+  }
+  .programme-hero-actions .btn {
+    padding: 0 18px;
+  }
+  .programme .movie-card {
+    grid-template-columns: 86px minmax(0, 1fr);
+    gap: 14px;
+  }
+  .programme .movie-info h3 {
+    font-size: 26px;
+  }
+  .programme-hero-location {
+    border: 0;
+    padding-left: 0;
+  }
+}
