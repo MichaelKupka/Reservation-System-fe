@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation, useParams } from "react-router-dom";
 import { ErrorState, Loading } from "../../shared/ui";
+import { readGuestToken } from "../booking/guest-session";
 import { useAuth } from "./auth-context";
 export function Protected({
   children,
@@ -23,4 +24,9 @@ export function Protected({
     );
   if (staff && user.role === "USER") return <Navigate to="/" replace />;
   return children;
+}
+export function ReservationAccess({ children }: { children: ReactNode }) {
+  const { id } = useParams();
+  if (id && readGuestToken(id)) return children;
+  return <Protected>{children}</Protected>;
 }

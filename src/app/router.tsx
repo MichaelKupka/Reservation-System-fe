@@ -1,6 +1,6 @@
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Protected } from "../features/auth/RequireSession";
+import { Protected, ReservationAccess } from "../features/auth/RequireSession";
 import Programme from "../features/programme/ProgrammePage";
 import { Empty } from "../shared/ui";
 import { Layout } from "./shell/Layout";
@@ -23,9 +23,9 @@ export function AppRouter() {
         <Route
           path="rezervacie/:id"
           element={
-            <Protected>
+            <ReservationAccess>
               <Checkout />
-            </Protected>
+            </ReservationAccess>
           }
         />
         <Route

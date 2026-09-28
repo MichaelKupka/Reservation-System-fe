@@ -8,9 +8,10 @@ import {
   Info,
   Ticket,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { api } from "../../shared/api/client";
+import { readGuestToken } from "./guest-session";
 import type {
   Ticket as Admission,
   Checkout as CheckoutResponse,
@@ -57,7 +58,13 @@ function OrderSummary({ reservation }: { reservation: Reservation }) {
 
 export default function Checkout() {
   const { id } = useParams();
-  const visitsPath = "/navstevy";
+  const guestToken = useMemo(() => (id ? readGuestToken(id) : null), [id]);
+  const guest = !!guestToken;
+  const authOptions = useMemo(
+    () => (guestToken ? { token: guestToken } : {}),
+    [guestToken],
+  );
+  const visitsPath = guest ? "/" : "/navstevy";
   const now = useNow();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<unknown>();
@@ -66,9 +73,12 @@ export default function Checkout() {
   const data = useAsync(
     async (signal) => {
       const [reservation, schema, tickets] = await Promise.all([
-        api<Reservation>(`/reservations/${id}`, { signal }),
+        api<Reservation>(`/reservations/${id}`, { signal, ...authOptions }),
         api<{ paths: Record<string, unknown> }>("/openapi.json", { signal }),
-        api<Admission[]>(`/reservations/${id}/tickets`, { signal }),
+        api<Admission[]>(`/reservations/${id}/tickets`, {
+          signal,
+          ...authOptions,
+        }),
       ]);
       const screening = await api<Screening>(
         `/screenings/${reservation.screening_id}`,
@@ -90,6 +100,7 @@ export default function Checkout() {
     const timer = setInterval(() => {
       api<Reservation>(`/reservations/${id}`, {
         signal: controller.signal,
+        ...authOptions,
       })
         .then((reservation) =>
           data.setValue((current) =>
@@ -102,7 +113,7 @@ export default function Checkout() {
       clearInterval(timer);
       controller.abort();
     };
-  }, [id, state, busy, data.setValue]);
+  }, [id, state, busy, data.setValue, authOptions]);
   if (data.loading) return <Loading />;
   if (data.error || !data.value)
     return (
@@ -125,7 +136,7 @@ export default function Checkout() {
     try {
       const checkout = await api<CheckoutResponse>(
         `/reservations/${id}/demo-payment`,
-        { method: "POST", body: { outcome } },
+        { method: "POST", body: { outcome }, ...authOptions },
       );
       data.setValue((current) =>
         current
@@ -149,6 +160,7 @@ export default function Checkout() {
     try {
       const cancelled = await api<Reservation>(`/reservations/${id}/cancel`, {
         method: "POST",
+        ...authOptions,
       });
       data.setValue((current) =>
         current ? { ...current, reservation: cancelled } : current,
@@ -166,7 +178,7 @@ export default function Checkout() {
       <div className="container">
         <Link className="back-link" to={visitsPath}>
           <ArrowLeft size={16} />
-          Moje návštevy
+          {guest ? "Späť na program" : "Moje návštevy"}
         </Link>
         <header className="booking-top flex flex-col justify-end">
           <p className="eyebrow">VÁŠ FILMOVÝ VEČER</p>
@@ -254,12 +266,20 @@ export default function Checkout() {
                   )}
                   <div className="checkout-return flex-col items-start gap-4.5 flex">
                     <Link className="btn primary" to={visitsPath}>
-                      Všetky moje návštevy <ArrowRight size={17} />
+                      {guest ? "Späť na program" : "Všetky moje návštevy"}{" "}
+                      <ArrowRight size={17} />
                     </Link>
                     <span className="small muted">
                       Zaplatené {money(reservation.total_minor)} ·{" "}
                       {tickets.length} vstupenky
                     </span>
+                    {guest && (
+                      <span className="small muted">
+                        Nakúpili ste ako hosť. Bez účtu túto stránku s
+                        vstupenkami znova otvoríte iba v tomto okne prehliadača,
+                        preto ju zatiaľ nezatvárajte.
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>

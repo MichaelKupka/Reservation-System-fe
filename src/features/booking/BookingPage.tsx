@@ -1,17 +1,26 @@
 import { ArrowLeft, ArrowRight, Info, RefreshCw, X } from "lucide-react";
+import type { FormEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { ApiError, api } from "../../shared/api/client";
 import type {
   Availability,
+  GuestReservation,
   Reservation,
   Screening,
 } from "../../shared/api/types";
 import { money } from "../../shared/lib/format";
 import { useAsync, useNow } from "../../shared/lib/hooks";
-import { ErrorState, InlineError, Loading } from "../../shared/ui/index";
+import {
+  ErrorState,
+  InlineError,
+  Loading,
+  Modal,
+  Submit,
+} from "../../shared/ui/index";
 import { useAuth } from "../auth/auth-context";
 import { readIntent, resolveIntent, saveIntent } from "./booking-intent";
+import { saveGuestToken } from "./guest-session";
 
 import {
   BookingStepper,
@@ -40,6 +49,7 @@ export default function Booking() {
   const [selected, setSelected] = useState<string[]>([]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<unknown>();
+  const [guestOpen, setGuestOpen] = useState(false);
   const storageKey = `kino.booking.${user?.id || "anon"}.${id}`;
   const intent = useRef(readIntent(storageKey));
   const activeKey = useRef<string | null>(storageKey);
@@ -101,14 +111,24 @@ export default function Booking() {
           : current,
     );
   }
-  async function reserve() {
-    if (busy || authLoading || authError || !selected.length || closed) return;
+  function reserve() {
     if (!user) {
-      navigate(
-        `/prihlasenie?next=${encodeURIComponent(location.pathname + location.search)}`,
-      );
+      setError(undefined);
+      setGuestOpen(true);
       return;
     }
+    void performReserve();
+  }
+  function submitGuest(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    void performReserve({
+      email: String(form.get("email")),
+      full_name: String(form.get("full_name")),
+    });
+  }
+  async function performReserve(guest?: { email: string; full_name: string }) {
+    if (busy || authLoading || authError || !selected.length || closed) return;
     const requestKey = storageKey;
     setBusy(true);
     setError(undefined);
@@ -117,11 +137,27 @@ export default function Booking() {
     );
     saveIntent(storageKey, intent.current);
     try {
-      const reservation = await api<Reservation>("/reservations", {
-        method: "POST",
-        body: { screening_seat_ids: selected },
-        key: intent.current.key,
-      });
+      let reservation: Reservation;
+      if (guest) {
+        const grant = await api<GuestReservation>("/guest/reservations", {
+          method: "POST",
+          body: { ...guest, screening_seat_ids: selected },
+          key: intent.current.key,
+          token: null,
+        });
+        saveGuestToken(
+          grant.reservation.id,
+          grant.guest_token,
+          grant.guest_token_expires_at,
+        );
+        reservation = grant.reservation;
+      } else {
+        reservation = await api<Reservation>("/reservations", {
+          method: "POST",
+          body: { screening_seat_ids: selected },
+          key: intent.current.key,
+        });
+      }
       saveIntent(requestKey, null);
       if (activeKey.current !== requestKey) return;
       intent.current = null;
@@ -134,6 +170,7 @@ export default function Booking() {
         );
         return;
       }
+      setGuestOpen(false);
       navigate(`/rezervacie/${reservation.id}`);
     } catch (e) {
       if (activeKey.current !== requestKey) return;
@@ -289,7 +326,7 @@ export default function Booking() {
                   ? "Držíme vám miesta…"
                   : user
                     ? "Potvrdiť výber"
-                    : "Prihlásiť sa a rezervovať"}
+                    : "Rezervovať ako hosť"}
                 <ArrowRight size={18} />
               </button>
             </div>
@@ -299,8 +336,13 @@ export default function Booking() {
             ) : null}
             {!user && (
               <p className="summary-note text-cinema-muted text-left text-[12px]">
-                Výber miest vám zostane zachovaný. Blokácia sa spustí až po
-                prihlásení.
+                Účet nepotrebujete. Miesta vám podržíme po zadaní kontaktu.{" "}
+                <Link
+                  className="text-button"
+                  to={`/prihlasenie?next=${encodeURIComponent(location.pathname + location.search)}`}
+                >
+                  Máte účet? Prihláste sa
+                </Link>
               </p>
             )}
             <p className="summary-note text-cinema-muted text-left text-[12px]">
@@ -309,6 +351,55 @@ export default function Booking() {
           </aside>
         </div>
       </div>
+      {guestOpen && (
+        <Modal
+          title="Rezervácia bez účtu"
+          onClose={() => !busy && setGuestOpen(false)}
+        >
+          <p className="muted">
+            Zadajte kontakt k rezervácii. Účet si vytvárať nemusíte a miesta vám
+            podržíme hneď po potvrdení.
+          </p>
+          <form onSubmit={submitGuest} className="form-stack">
+            <InlineError error={error} />
+            <label>
+              Vaše meno
+              <input
+                name="full_name"
+                autoComplete="name"
+                minLength={2}
+                maxLength={120}
+                required
+                placeholder="Meno a priezvisko"
+              />
+            </label>
+            <label>
+              E-mail
+              <input
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                maxLength={254}
+                placeholder="vas@email.sk"
+              />
+            </label>
+            <div className="form-actions">
+              <button
+                type="button"
+                className="btn secondary"
+                onClick={() => setGuestOpen(false)}
+                disabled={busy}
+              >
+                Späť
+              </button>
+              <Submit busy={busy}>
+                Podržať miesta <ArrowRight size={18} />
+              </Submit>
+            </div>
+          </form>
+        </Modal>
+      )}
     </div>
   );
 }
