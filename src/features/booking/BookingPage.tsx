@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Info, RefreshCw, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Info, RefreshCw } from "lucide-react";
 import type { FormEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
@@ -9,7 +9,6 @@ import type {
   Reservation,
   Screening,
 } from "../../shared/api/types";
-import { money } from "../../shared/lib/format";
 import { useAsync, useNow } from "../../shared/lib/hooks";
 import {
   ErrorState,
@@ -28,6 +27,7 @@ import {
   FilmContext,
   ScreeningDetails,
 } from "./BookingFlow";
+import { ChosenSeats, SelectionTotal } from "./ChosenSeats";
 import { SeatPicker } from "./SeatPicker";
 
 export default function Booking() {
@@ -97,7 +97,6 @@ export default function Booking() {
   const { screening, availability } = data.value;
   const seats = availability.seats;
   const chosen = seats.filter((seat) => selected.includes(seat.id));
-  const total = chosen.reduce((sum, seat) => sum + seat.price_minor, 0);
   const closed =
     !availability.sales_open ||
     new Date(availability.sales_close_at).getTime() <= now;
@@ -265,52 +264,9 @@ export default function Booking() {
             </div>
           </div>
           <aside className="booking-summary">
-            <div className="chosen-seats flex-col gap-3 flex">
-              <span className="small muted" role="status" aria-live="polite">
-                Vaše miesta · {chosen.length} vybraných
-              </span>
-              <div>
-                {chosen.length ? (
-                  chosen.map((seat) => (
-                    <button
-                      className="seat-chip"
-                      key={seat.id}
-                      disabled={busy}
-                      aria-label={`Odstrániť miesto ${seat.seat_label}`}
-                      onClick={() => {
-                        document
-                          .querySelector<HTMLButtonElement>(
-                            `[data-seat-id="${seat.id}"]`,
-                          )
-                          ?.focus();
-                        toggle(seat.id);
-                      }}
-                    >
-                      <span className="chosen-seat-label">
-                        <strong>{seat.row_number}</strong> rad{" "}
-                        <strong>{seat.seat_number}</strong> miesto
-                      </span>
-                      <span className="chosen-seat-price">
-                        {money(seat.price_minor)}
-                      </span>
-                      <X size={14} />
-                    </button>
-                  ))
-                ) : (
-                  <span className="muted">Zatiaľ ste si nevybrali</span>
-                )}
-              </div>
-            </div>
+            <ChosenSeats seats={chosen} busy={busy} toggle={toggle} />
             <div className="booking-action">
-              <div className="price-total justify-between items-center gap-3 text-[14px] flex">
-                <span>
-                  Spolu{" "}
-                  <small>
-                    {chosen.length} {chosen.length === 1 ? "miesto" : "miest"}
-                  </small>
-                </span>
-                <strong>{money(total)}</strong>
-              </div>
+              <SelectionTotal seats={chosen} />
               <button
                 className="btn primary full"
                 onClick={reserve}

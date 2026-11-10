@@ -7,6 +7,7 @@ import { Layout } from "./shell/Layout";
 const Auth = lazy(() => import("../features/auth/AuthPage"));
 const Booking = lazy(() => import("../features/booking/BookingPage"));
 const Checkout = lazy(() => import("../features/booking/CheckoutPage"));
+const ChangeSeats = lazy(() => import("../features/booking/ChangeSeatsPage"));
 const Visits = lazy(() => import("../features/visits/VisitsPage"));
 const Cinemas = lazy(() => import("../features/cinemas/CinemasPage"));
 const Account = lazy(() => import("../features/account/AccountPage"));
@@ -25,6 +26,14 @@ export function AppRouter() {
           element={
             <ReservationAccess>
               <Checkout />
+            </ReservationAccess>
+          }
+        />
+        <Route
+          path="rezervacie/:id/miesta"
+          element={
+            <ReservationAccess>
+              <ChangeSeats />
             </ReservationAccess>
           }
         />

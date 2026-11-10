@@ -105,6 +105,12 @@ nákup, vlastné vstupenky, správa kín/programu/používateľov a jednorazová
 Manažér vidí pridelené kiná; administrátor celú správu. Backend overuje oprávnenia
 pri každej operácii. Čas sa zobrazuje v časovom pásme zariadenia a sumy z celých centov.
 
+Neuhradenú rezerváciu možno zmeniť: odkaz „Zmeniť miesta“ na stránke platby
+otvorí `/rezervacie/:id/miesta` s mapou, kde sú vlastné miesta predvybrané.
+Uloženie pošle `PUT /reservations/{id}` (prihlásený aj hosť) a vráti sa na platbu.
+Čas blokácie sa zmenou nepredlžuje. Stránka platby aj zoznam návštev ukazujú
+iba aktuálne miesta, nie tie, ktoré boli pri zmene uvoľnené.
+
 Rezervovať a zaplatiť sa dá aj bez účtu. Neprihlásený návštevník zadá meno a
 e-mail, backend cez `POST /guest/reservations` vytvorí hold a vráti opaque guest
 token, ktorým sa autorizuje čítanie, platba aj zrušenie tej istej rezervácie

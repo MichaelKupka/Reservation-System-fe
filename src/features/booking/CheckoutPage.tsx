@@ -29,13 +29,14 @@ import {
   Modal,
 } from "../../shared/ui/index";
 import { BookingStepper, FilmBackdrop, FilmContext } from "./BookingFlow";
+import { currentItems } from "./reservation-items";
 import { TicketCard } from "./TicketCard";
 
 function OrderSummary({ reservation }: { reservation: Reservation }) {
   return (
     <div className="checkout-order">
       <div className="order-lines flex-col gap-3 flex">
-        {[...reservation.items]
+        {[...currentItems(reservation)]
           .sort((a, b) =>
             a.seat_label.localeCompare(b.seat_label, "sk", { numeric: true }),
           )
@@ -309,13 +310,23 @@ export default function Checkout() {
                         Vybrať nové premietanie <ArrowRight size={17} />
                       </Link>
                     ) : (
-                      <button
-                        className="text-button danger"
-                        onClick={() => setCancelOpen(true)}
-                        disabled={busy}
-                      >
-                        Zrušiť rezerváciu a uvoľniť miesta
-                      </button>
+                      <div className="flex flex-wrap items-center gap-x-6">
+                        <Link
+                          className={`text-button min-h-11${busy ? " pointer-events-none opacity-50" : ""}`}
+                          to={`/rezervacie/${reservation.id}/miesta`}
+                          aria-disabled={busy}
+                          onClick={(event) => busy && event.preventDefault()}
+                        >
+                          Zmeniť miesta
+                        </Link>
+                        <button
+                          className="text-button danger min-h-11"
+                          onClick={() => setCancelOpen(true)}
+                          disabled={busy}
+                        >
+                          Zrušiť rezerváciu a uvoľniť miesta
+                        </button>
+                      </div>
                     )}
                   </section>
                 </div>
