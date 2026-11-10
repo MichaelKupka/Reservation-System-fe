@@ -24,6 +24,7 @@ import {
   Loading,
   PageHeading,
 } from "../../shared/ui/index";
+import { currentItems } from "../booking/reservation-items";
 import { TicketCard } from "../booking/TicketCard";
 
 export default function Visits() {
@@ -121,7 +122,7 @@ export default function Visits() {
                         </p>
                         <div className="small muted">
                           Miesta{" "}
-                          {reservation.items
+                          {currentItems(reservation)
                             .map((i) => i.seat_label)
                             .join(", ")}
                           {reservation.state === "HELD" && !expired && (
